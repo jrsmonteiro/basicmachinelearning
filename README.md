@@ -1,2 +1,2 @@
 # basicmachinelearning
-Laboratório de machine learning básico
+Laboratório de machine learning básico.
