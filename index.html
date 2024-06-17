@@ -8,13 +8,24 @@
     />
     <meta name="renderer" content="webkit" />
     <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4.0.15/dist/vue-router.global.js"></script>
     <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="./pages/index/index.js"></script>
     <title>Aprendizado básico de Machine Learning</title>
   </head>
   <body>
-    <mdui-layout>
+    <!---- Elemento de montagem da aplicação ----------------->
+    <mdui-layout id="app">
+      <app-main />
+    </mdui-layout>
+
+    <!---------------------------------------------------------
+    ---- Templates dos componentes gerais da aplicação --------
+    ---------------------------------------------------------->
+
+    <!---- Template do componente principal da aplicação ----->
+    <template id="app-main-component">
       <mdui-top-app-bar>
         <mdui-top-app-bar-title
           >Aprendizado básico de Machine Learning</mdui-top-app-bar-title
@@ -22,9 +33,37 @@
       </mdui-top-app-bar>
 
       <mdui-layout-main>
-        <div>Conteúdo principal</div>
-        <div id="chart1"></div>
+        <router-view />
       </mdui-layout-main>
-    </mdui-layout>
+    </template>
+
+    <!---- Template do componente wrapper de uma página ------>
+    <template id="app-page-component">
+      <div class="page"><slot></slot></div>
+    </template>
+
+    <!---------------------------------------------------------
+    ---- Templates das páginas da aplicação -------------------
+    ---------------------------------------------------------->
+
+    <!---- Template da página de regressão linear ------------>
+    <template id="index-page">
+      <app-page>
+        <h1>Index Page</h1>
+        <div>{{ message }}</div>
+      </app-page>
+    </template>
+
+    <!---- Template da página de regressão linear ------------>
+    <template id="linear-regression-page">
+      <app-page>
+        <div>Página de regressão linear</div>
+    </template>
+
+    <!---------------------------------------------------------
+    ---- Scripts da aplicação ---------------------------------
+    ---------------------------------------------------------->
+    <script src="app.js"></script>
+    <script src="pages.js"></script>
   </body>
 </html>

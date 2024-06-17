@@ -1,3 +1,49 @@
+class Page {
+  data = {};
+
+  constructor() {}
+}
+
+class IndexPage extends Page {
+  #series = [
+    {
+      name: "Etanol",
+      id: "etanol",
+      marker: {
+        symbol: "circle",
+      },
+      data: [],
+    },
+    {
+      name: "Gasolina",
+      id: "gasolina",
+      marker: {
+        symbol: "square",
+      },
+      data: [],
+    },
+  ];
+
+  async setup() {
+    await this.setSeries();
+  }
+
+  async setSeries() {
+    const response = await fetch("../../data/veiculos_consumo.json");
+    const data = await response.json();
+    data.forEach((veiculo) => {
+      switch (veiculo.combustivel) {
+        case "etanol":
+          this.#series[0].data.push(veiculo.consumo);
+          break;
+        case "gasolina":
+          this.#series[1].data.push(veiculo.consumo);
+          break;
+      }
+    });
+  }
+}
+
 Highcharts.setOptions({
   colors: ["rgba(5,141,199,0.5)", "rgba(80,180,50,0.5)", "rgba(237,86,27,0.5)"],
 });

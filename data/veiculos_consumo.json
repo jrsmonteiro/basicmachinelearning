@@ -1,0 +1,42 @@
+[
+  {
+    "combustivel": "etanol",
+    "cilindradas": 1.0,
+    "consumo": 10
+  },
+  {
+    "combustivel": "etanol",
+    "cilindradas": 1.3,
+    "consumo": 9
+  },
+  {
+    "combustivel": "etanol",
+    "cilindradas": 1.6,
+    "consumo": 8
+  },
+  {
+    "combustivel": "etanol",
+    "cilindradas": 2.0,
+    "consumo": 7
+  },
+  {
+    "combustivel": "gasolina",
+    "cilindradas": 1.0,
+    "consumo": 14
+  },
+  {
+    "combustivel": "gasolina",
+    "cilindradas": 1.3,
+    "consumo": 12
+  },
+  {
+    "combustivel": "gasolina",
+    "cilindradas": 1.6,
+    "consumo": 10
+  },
+  {
+    "combustivel": "gasolina",
+    "cilindradas": 2.0,
+    "consumo": 9
+  }
+]
