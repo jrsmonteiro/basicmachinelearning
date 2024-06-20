@@ -7,18 +7,25 @@
       content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
     />
     <meta name="renderer" content="webkit" />
-    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/vuetify@3.6.9/dist/vuetify.min.css"
+    />
+    <link href="app.css" rel="stylesheet" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/vue-router@4.0.15/dist/vue-router.global.js"></script>
-    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.6.9/dist/vuetify.min.js"></script>
     <title>Aprendizado básico de Machine Learning</title>
   </head>
   <body>
     <!---- Elemento de montagem da aplicação ----------------->
-    <mdui-layout id="app">
+    <div id="app">
       <app-main />
-    </mdui-layout>
+    </div>
 
     <!---------------------------------------------------------
     ---- Templates dos componentes gerais da aplicação --------
@@ -26,15 +33,38 @@
 
     <!---- Template do componente principal da aplicação ----->
     <template id="app-main-component">
-      <mdui-top-app-bar>
-        <mdui-top-app-bar-title
-          >Aprendizado básico de Machine Learning</mdui-top-app-bar-title
-        >
-      </mdui-top-app-bar>
+      <v-responsive>
+        <v-app>
+          <v-app-bar title="Aprendizado de Machine Learning">
+            <template v-slot:prepend><!-- Logotipo --></template>
 
-      <mdui-layout-main>
-        <router-view />
-      </mdui-layout-main>
+            <v-spacer></v-spacer>
+
+            <v-btn icon>
+              <v-icon>mdi-account</v-icon>
+            </v-btn>
+            <v-app-bar-nav-icon
+              @click.stop="drawer = !drawer"
+            ></v-app-bar-nav-icon>
+          </v-app-bar>
+
+          <v-navigation-drawer v-model="drawer">
+            <v-list>
+              <v-list-item to="/" title="Principal"></v-list-item>
+              <v-list-item
+                to="/linear-regression"
+                title="Regressão Linear"
+              ></v-list-item>
+            </v-list>
+          </v-navigation-drawer>
+
+          <v-main style="min-height: 300px">
+            <v-container>
+              <router-view />
+            </v-container>
+          </v-main>
+        </v-app>
+      </v-responsive>
     </template>
 
     <!---- Template do componente wrapper de uma página ------>
@@ -49,7 +79,7 @@
     <!---- Template da página de regressão linear ------------>
     <template id="index-page">
       <app-page>
-        <h1>Index Page</h1>
+        <h2>Index Page</h2>
         <div>{{ message }}</div>
       </app-page>
     </template>
@@ -58,6 +88,7 @@
     <template id="linear-regression-page">
       <app-page>
         <div>Página de regressão linear</div>
+      </app-page>
     </template>
 
     <!---------------------------------------------------------

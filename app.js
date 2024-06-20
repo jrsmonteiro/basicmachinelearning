@@ -21,7 +21,7 @@ class App {
    * Metódo construtor
    */
   constructor() {
-    this.#vueApp = Vue.createApp({});
+    this.#vueApp = Vue.createApp();
     this.#vueRouter = VueRouter.createRouter({
       history: VueRouter.createWebHashHistory(),
       routes: [],
@@ -33,6 +33,13 @@ class App {
    */
   start() {
     this.#vueApp.use(this.#vueRouter);
+    this.#vueApp.use(
+      Vuetify.createVuetify({
+        theme: {
+          defaultTheme: "dark",
+        },
+      })
+    );
     this.#vueApp.mount("#app");
   }
 
@@ -137,7 +144,10 @@ const {
 /**
  * Componente principal
  */
-app.component("app-main", () => {});
+app.component("app-main", () => {
+  const drawer = ref(true);
+  return { drawer };
+});
 
 /**
  * Componente wrapper de uma página
